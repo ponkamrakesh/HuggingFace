@@ -8,3 +8,5 @@ app_file: app.py
 pinned: false
 ---
 #HuggingFace
+
+basic HuggingFace CI/CD integration with Github for rendering a sample Webpage.
