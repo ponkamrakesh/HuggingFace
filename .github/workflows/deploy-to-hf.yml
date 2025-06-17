@@ -22,5 +22,5 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}  # Hugging Face token stored in GitHub secrets
         run: |
-          git remote add hf https://RakeshPonkam07:$HF_TOKEN@huggingface.co/spaces/RakeshPonkam07/Render
+          git remote add hf https://RakeshPonkam07:$HF_TOKEN@huggingface.co/spaces/RakeshPonkam07/fastapi-home-app
           git push -f hf main
