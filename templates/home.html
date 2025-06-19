@@ -1,153 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI-Powered Prediction Dashboard</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f2f5;
-      color: #333;
-    }
+    <meta charset="UTF-8">
+    <title>StreamX | Your Netflix Clone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    header {
-      background: linear-gradient(135deg, #4e54c8, #8f94fb);
-      padding: 20px;
-      text-align: center;
-      color: white;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-
-    .container {
-      padding: 30px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .section {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      margin-bottom: 30px;
-    }
-
-    .section h2 {
-      margin-top: 0;
-      color: #4e54c8;
-    }
-
-    .checkbox-group label {
-      display: block;
-      margin: 10px 0;
-      font-size: 1.1em;
-    }
-
-    .predict-btn {
-      background: #4e54c8;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .predict-btn:hover {
-      background: #3e44b8;
-    }
-
-    .result {
-      font-weight: bold;
-      font-size: 1.2em;
-      color: #28a745;
-      margin-top: 15px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      color: #aaa;
-      font-size: 0.9em;
-    }
-  </style>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #141414;
+            color: #fff;
+        }
+        .navbar {
+            background-color: #111;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e50914;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .navbar ul li {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .navbar ul li:hover {
+            color: #e50914;
+        }
+        .hero {
+            position: relative;
+            height: 90vh;
+            background: url('https://assets.nflxext.com/ffe/siteui/vlv3/3cb08b60-a7f3-4641-8226-e062f5122a2e/2dcfbd82-27a7-4be2-8d7e-b5ed0f4500c3/IN-en-20240610-popsignuptwoweeks-perspective_alpha_website_small.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .hero-content button {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #e50914;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .hero-content button:hover {
+            background-color: #f40612;
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>AI-Powered Insights Dashboard</h1>
-    <p>Predict Your Performance, Sales & Growth with Smart AI</p>
-  </header>
-
-  <div class="container">
-    <div class="section">
-      <h2>Choose What You Want to Predict</h2>
-      <div class="checkbox-group">
-        <label><input type="checkbox" id="marks" /> Marks Prediction</label>
-        <label><input type="checkbox" id="sales" /> Sales Forecast</label>
-        <label><input type="checkbox" id="customer" /> Customer Retention</label>
-        <label><input type="checkbox" id="inventory" /> Inventory Optimization</label>
-        <label><input type="checkbox" id="profit" /> Profit Estimation</label>
-      </div>
-      <button class="predict-btn" onclick="predict()">Predict Now</button>
-      <div class="result" id="result"></div>
+    <div class="navbar">
+        <div class="logo">StreamX</div>
+        <ul>
+            <li>Home</li>
+            <li>TV Shows</li>
+            <li>Movies</li>
+            <li>New & Popular</li>
+            <li>My List</li>
+        </ul>
     </div>
 
-    <div class="section">
-      <h2>About This Dashboard</h2>
-      <p>This dashboard leverages artificial intelligence and machine learning techniques to deliver quick, actionable insights based on selected business or academic metrics.</p>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Unlimited movies, TV shows, and more</h1>
+            <p>Watch anywhere. Cancel anytime.</p>
+            <button>Get Started</button>
+        </div>
     </div>
-  </div>
-
-  <footer>
-    Made with 💙 by Rakesh • Powered by AI & Web Tech
-  </footer>
-
- <script>
-  async function predict() {
-    let selected = [];
-    if (document.getElementById("marks").checked) selected.push("Marks");
-    if (document.getElementById("sales").checked) selected.push("Sales");
-    if (document.getElementById("customer").checked) selected.push("Customer Retention");
-    if (document.getElementById("inventory").checked) selected.push("Inventory");
-    if (document.getElementById("profit").checked) selected.push("Profit");
-
-    if (selected.length === 0) {
-      document.getElementById("result").textContent = "⚠️ Please select at least one option.";
-      return;
-    }
-
-    try {
-      const res = await fetch("/predict", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ features: selected })
-      });
-
-      const data = await res.json();
-      let output = "🔍 Predictions:<br>";
-      for (let key in data.predictions) {
-        output += `<strong>${key}:</strong> ${data.predictions[key]}<br>`;
-      }
-      document.getElementById("result").innerHTML = output;
-
-    } catch (err) {
-      document.getElementById("result").textContent = "🚫 Error contacting AI server.";
-      console.error(err);
-    }
-  }
-</script>
-
-
 
 </body>
 </html>
