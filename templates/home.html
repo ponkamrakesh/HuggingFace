@@ -111,22 +111,42 @@
   </footer>
 
   <script>
-    function predict() {
-      let selected = [];
-      if (document.getElementById("marks").checked) selected.push("Marks");
-      if (document.getElementById("sales").checked) selected.push("Sales");
-      if (document.getElementById("customer").checked) selected.push("Customer Retention");
-      if (document.getElementById("inventory").checked) selected.push("Inventory");
-      if (document.getElementById("profit").checked) selected.push("Profit");
+  async function predict() {
+    let selected = [];
+    if (document.getElementById("marks").checked) selected.push("Marks");
+    if (document.getElementById("sales").checked) selected.push("Sales");
+    if (document.getElementById("customer").checked) selected.push("Customer Retention");
+    if (document.getElementById("inventory").checked) selected.push("Inventory");
+    if (document.getElementById("profit").checked) selected.push("Profit");
 
-      if (selected.length === 0) {
-        document.getElementById("result").textContent = "⚠️ Please select at least one option.";
-      } else {
-        document.getElementById("result").textContent =
-          "🤖 AI Prediction initialized for: " + selected.join(", ") + ". (Integration pending ML backend)";
-      }
+    if (selected.length === 0) {
+      document.getElementById("result").textContent = "⚠️ Please select at least one option.";
+      return;
     }
-  </script>
+
+    try {
+      const res = await fetch("http://127.0.0.1:8000/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ features: selected })
+      });
+
+      const data = await res.json();
+      let output = "🔍 Predictions:<br>";
+      for (let key in data.predictions) {
+        output += `<strong>${key}:</strong> ${data.predictions[key]}<br>`;
+      }
+      document.getElementById("result").innerHTML = output;
+
+    } catch (err) {
+      document.getElementById("result").textContent = "🚫 Error contacting AI server.";
+      console.error(err);
+    }
+  }
+</script>
+
 
 </body>
 </html>
