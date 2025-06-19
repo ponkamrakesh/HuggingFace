@@ -1,101 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>StreamX | Your Netflix Clone</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Helvetica Neue', sans-serif;
-            background-color: #141414;
-            color: #fff;
-        }
-        .navbar {
-            background-color: #111;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .navbar .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #e50914;
-        }
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-        }
-        .navbar ul li {
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .navbar ul li:hover {
-            color: #e50914;
-        }
-        .hero {
-            position: relative;
-            height: 90vh;
-            background: url('https://assets.nflxext.com/ffe/siteui/vlv3/3cb08b60-a7f3-4641-8226-e062f5122a2e/2dcfbd82-27a7-4be2-8d7e-b5ed0f4500c3/IN-en-20240610-popsignuptwoweeks-perspective_alpha_website_small.jpg') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .hero-content {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 2rem;
-            border-radius: 10px;
-        }
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        .hero-content button {
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            background-color: #e50914;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .hero-content button:hover {
-            background-color: #f40612;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="navbar">
-        <div class="logo">StreamX</div>
-        <ul>
-            <li>Home</li>
-            <li>TV Shows</li>
-            <li>Movies</li>
-            <li>New & Popular</li>
-            <li>My List</li>
-        </ul>
+{% extends "layout.html" %}
+{% block content %}
+<div class="section-title">Welcome to StreamX</div>
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    {% for i in range(1, 10) %}
+    <div class="swiper-slide">
+      <img src="https://picsum.photos/200/300?random={{ i }}" alt="Movie">
     </div>
-
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Unlimited movies, TV shows, and more</h1>
-            <p>Watch anywhere. Cancel anytime.</p>
-            <button>Get Started</button>
-        </div>
-    </div>
-
-</body>
-</html>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

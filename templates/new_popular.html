@@ -1,11 +1,11 @@
-{% include 'layout.html' %}
+{% extends "layout.html" %}
 {% block content %}
 <div class="section-title">New & Popular</div>
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
     {% for i in range(31, 40) %}
     <div class="swiper-slide">
-      <img src="https://picsum.photos/200/300?random={{ i }}" alt="Popular">
+      <img src="https://picsum.photos/200/300?random={{ i }}" alt="New & Popular">
     </div>
     {% endfor %}
   </div>
