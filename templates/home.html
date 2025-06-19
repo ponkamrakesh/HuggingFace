@@ -1,10 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-Powered Prediction Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .section {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      color: #4e54c8;
+    }
+
+    .checkbox-group label {
+      display: block;
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+
+    .predict-btn {
+      background: #4e54c8;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .predict-btn:hover {
+      background: #3e44b8;
+    }
+
+    .result {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #28a745;
+      margin-top: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      color: #aaa;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to the FastAPI Web App!</h1>
-    <p>This is Rakesh</p>
+
+  <header>
+    <h1>AI-Powered Insights Dashboard</h1>
+    <p>Predict Your Performance, Sales & Growth with Smart AI</p>
+  </header>
+
+  <div class="container">
+    <div class="section">
+      <h2>Choose What You Want to Predict</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="marks" /> Marks Prediction</label>
+        <label><input type="checkbox" id="sales" /> Sales Forecast</label>
+        <label><input type="checkbox" id="customer" /> Customer Retention</label>
+        <label><input type="checkbox" id="inventory" /> Inventory Optimization</label>
+        <label><input type="checkbox" id="profit" /> Profit Estimation</label>
+      </div>
+      <button class="predict-btn" onclick="predict()">Predict Now</button>
+      <div class="result" id="result"></div>
+    </div>
+
+    <div class="section">
+      <h2>About This Dashboard</h2>
+      <p>This dashboard leverages artificial intelligence and machine learning techniques to deliver quick, actionable insights based on selected business or academic metrics.</p>
+    </div>
+  </div>
+
+  <footer>
+    Made with 💙 by Rakesh • Powered by AI & Web Tech
+  </footer>
+
+  <script>
+    function predict() {
+      let selected = [];
+      if (document.getElementById("marks").checked) selected.push("Marks");
+      if (document.getElementById("sales").checked) selected.push("Sales");
+      if (document.getElementById("customer").checked) selected.push("Customer Retention");
+      if (document.getElementById("inventory").checked) selected.push("Inventory");
+      if (document.getElementById("profit").checked) selected.push("Profit");
+
+      if (selected.length === 0) {
+        document.getElementById("result").textContent = "⚠️ Please select at least one option.";
+      } else {
+        document.getElementById("result").textContent =
+          "🤖 AI Prediction initialized for: " + selected.join(", ") + ". (Integration pending ML backend)";
+      }
+    }
+  </script>
+
 </body>
 </html>
