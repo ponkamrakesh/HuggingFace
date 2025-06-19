@@ -1,0 +1,13 @@
+{% include 'layout.html' %}
+{% block content %}
+<div class="section-title">Top Movies</div>
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    {% for i in range(21, 30) %}
+    <div class="swiper-slide">
+      <img src="https://picsum.photos/200/300?random={{ i }}" alt="Movie">
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
