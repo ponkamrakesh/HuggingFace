@@ -1,13 +1,143 @@
-{% extends "layout.html" %}
-{% block content %}
-<div class="section-title">Welcome to StreamX</div>
-<div class="swiper mySwiper">
-  <div class="swiper-wrapper">
-    {% for i in range(1, 10) %}
-    <div class="swiper-slide">
-      <img src="https://picsum.photos/200/300?random={{ i }}" alt="Movie">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StreamX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #141414;
+      font-family: 'Roboto', sans-serif;
+      color: #fff;
+    }
+
+    .navbar {
+      background-color: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      color: #e50914;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .menu {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .menu button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      transition: color 0.3s;
+    }
+
+    .menu button:hover,
+    .menu button.active {
+      color: #e50914;
+    }
+
+    .section {
+      display: none;
+      padding: 2rem;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: #222;
+      height: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">StreamX</div>
+    <div class="menu">
+      <button class="tab-btn active" onclick="showTab('home')">Home</button>
+      <button class="tab-btn" onclick="showTab('tv')">TV Shows</button>
+      <button class="tab-btn" onclick="showTab('movies')">Movies</button>
+      <button class="tab-btn" onclick="showTab('popular')">New & Popular</button>
+      <button class="tab-btn" onclick="showTab('list')">My List</button>
     </div>
-    {% endfor %}
   </div>
-</div>
-{% endblock %}
+
+  <div id="home" class="section active">
+    <h2>Welcome to StreamX</h2>
+    <div class="card-grid">
+      {% for i in range(1, 6) %}
+      <div class="card"><img src="https://picsum.photos/200/300?random={{ i }}"></div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="tv" class="section">
+    <h2>TV Shows</h2>
+    <div class="card-grid">
+      {% for i in range(6, 11) %}
+      <div class="card"><img src="https://picsum.photos/200/300?random={{ i }}"></div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="movies" class="section">
+    <h2>Movies</h2>
+    <div class="card-grid">
+      {% for i in range(11, 16) %}
+      <div class="card"><img src="https://picsum.photos/200/300?random={{ i }}"></div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="popular" class="section">
+    <h2>New & Popular</h2>
+    <div class="card-grid">
+      {% for i in range(16, 21) %}
+      <div class="card"><img src="https://picsum.photos/200/300?random={{ i }}"></div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="list" class="section">
+    <h2>My List</h2>
+    <p>You haven't added anything to your list yet.</p>
+  </div>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
