@@ -110,7 +110,7 @@
     Made with 💙 by Rakesh • Powered by AI & Web Tech
   </footer>
 
-  <script>
+ <script>
   async function predict() {
     let selected = [];
     if (document.getElementById("marks").checked) selected.push("Marks");
@@ -125,7 +125,7 @@
     }
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/predict", {
+      const res = await fetch("/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -146,6 +146,7 @@
     }
   }
 </script>
+
 
 
 </body>
